@@ -6,7 +6,7 @@ miImage.onclick = function () {
     } else {
       miImage.setAttribute('src', 'images/zarin.png');
     }
-}
+/* }
 
 let miBoton = document.querySelector('button');
 let miTitulo = document.querySelector( 'h1');
@@ -34,3 +34,5 @@ miBoton.onclick = function()
 {
     estableceNombreUsuario();
 }
+*/
+
