@@ -1,1 +1,0 @@
-(()=>{var n,e=document.querySelectorAll(".alternar"),o=Array.apply(null,e),t=[];(n=o).forEach((function(e){n.indexOf(e)%2==0&&t.push([e,n[n.indexOf(e)+1]])})),t.forEach((function(n){n.forEach((function(e){function o(){n.forEach((function(n){n.classList.toggle("inactive")}))}e.addEventListener("mouseover",o),e.addEventListener("mouseout",o)}))}))})();
