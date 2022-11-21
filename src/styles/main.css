@@ -357,7 +357,11 @@ body::-webkit-scrollbar-thumb {
   }
 
   .img-sup-der img {
+<<<<<<< HEAD
     width: 50vw;
+=======
+    width: 90vw;
+>>>>>>> e01f25fa818135c9d76ae18911b9efb81a0878b6
   }
 
   .contacto{
