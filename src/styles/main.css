@@ -152,6 +152,52 @@ body::-webkit-scrollbar-thumb {
   width: 64px;
 }
 
+.menu-display {
+  position: fixed;
+  z-index: 2;
+}
+
+.menu-display-text {
+  z-index: 1;
+  color: var(--white);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+}
+
+.menu-close img{
+  position:absolute;
+  top: 16rem;
+  left: 20rem;
+  width: 64px;
+}
+
+.menu-display-text li{
+  list-style:none;
+  margin-bottom: 32px;
+}
+
+.menu-display-text a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.menu-display-img{
+  height: auto; 
+  z-index: 0;
+  width: 100vw;
+}
+
 .seccion-superior {
   display: flex;
   flex-direction: column;

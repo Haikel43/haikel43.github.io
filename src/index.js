@@ -6,7 +6,7 @@ const imagenAlternar = document.querySelectorAll('.alternar');
 const imagenAlternarToArray = Array.apply(null, imagenAlternar);
 const imagenAlaternarArrayPorPar = [];
 
-function arreglaArreglos(arr) {
+function altenarImagen(arr) {
    arr.forEach(function(element) {
     if (arr.indexOf(element) % 2 == 0) {
         imagenAlaternarArrayPorPar.push([element, arr[arr.indexOf(element)+1]])
@@ -29,4 +29,27 @@ function toggle(nodeList) {
     })
 }
 
-arreglaArreglos(imagenAlternarToArray);
+altenarImagen(imagenAlternarToArray);
+
+/* */
+
+const menuClosers = document.querySelectorAll('.closer');
+const menuClosersToArray = Array.apply(null, menuClosers);
+
+function menuDisplay(arr) {
+    arr.forEach(function(item) {
+        item.addEventListener('click', closers);
+        console.log(item);
+        function closers(){
+            display(arr);
+        }
+    });
+    function display(arr){
+        arr.forEach(function(item) {
+            item.classList.toggle('inactive');
+        })    
+    }    
+}
+
+menuDisplay(menuClosersToArray);
+
