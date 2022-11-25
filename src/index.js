@@ -23,15 +23,17 @@ function altenarImagen(arr) {
 })
 }
 
-function toggle(nodeList) {
-    nodeList.forEach(function(item) {
+function toggle(arr) {
+    arr.forEach(function(item) {
         item.classList.toggle('inactive');
     })
 }
 
 altenarImagen(imagenAlternarToArray);
 
-/* */
+/*Este codigo permite abrir y cerrar el menu de la pagina cuando
+se hace click en un elemento que posee la clase closer, los elementos
+se quieren mostrar en el menu deben tener la clase closer e inactive */
 
 const menuClosers = document.querySelectorAll('.closer');
 const menuClosersToArray = Array.apply(null, menuClosers);
@@ -39,7 +41,6 @@ const menuClosersToArray = Array.apply(null, menuClosers);
 function menuDisplay(arr) {
     arr.forEach(function(item) {
         item.addEventListener('click', closers);
-        console.log(item);
         function closers(){
             display(arr);
         }
