@@ -53,7 +53,7 @@ async function viewResults() {
                     `
                     <div class="artista">
                         <img src="${artist.data.visuals.avatarImage.sources[0].url}" alt="">
-                        <p class="p inactive>${artist.data.profile.name}</p>
+                        <p>${artist.data.profile.name}</p>
                     </div>
                     `).join('')}`;
                 content.innerHTML = view;
@@ -69,10 +69,10 @@ async function viewResults() {
                 view = `
                     <div class="disc">
                         <img src="${dataRequest.albums.items[0].data.coverArt.sources[0].url}" alt="">
-                        <p class="p inactive>Album: ${dataRequest.albums.items[0].data.name}</p>
-                        <p class="p inactive> Year: ${dataRequest.albums.items[0].data.date.year} </p>
+                        <p>Album: ${dataRequest.albums.items[0].data.name}</p>
+                        <p> Year: ${dataRequest.albums.items[0].data.date.year} </p>
                     </div>
-                    `
+                    `;
                 content.innerHTML = view;
                 document.querySelector('.disc').onclick = openAlbum;
                 function openAlbum() {
@@ -80,7 +80,22 @@ async function viewResults() {
                 }
                 break;
             case 'tracks':
-                console.log('es una cancion');
+                console.log(dataRequest);  
+                controlDisplay('gridMode', 'full','track'); 
+                const albumIdTrack = `${dataRequest.tracks[0].data.albumOfTrack.id}`;             
+                view = `
+                <div class="track">
+                    <img src="${dataRequest.tracks[0].data.albumOfTrack.coverArt.sources[0].url}" alt="">
+                    <p>Track: ${dataRequest.tracks[0].data.name}</p>
+                    <p id="${albumIdTrack}">Album: <str>${dataRequest.tracks[0].data.albumOfTrack.name}</str></p>
+                </div>
+                `;
+                content.innerHTML = view;
+                document.getElementById(albumIdTrack).onclick = openAlbum;
+                function openAlbum() {
+                    lookAlbum(albumIdTrack);
+                }             
+
             break;
             default:
                 break;
@@ -193,7 +208,7 @@ altenarImagen(alternarToArray);
 
 const displayGrid = () => {
     console.log('esto es una grid');
-    if (content.classList.contains('artist') == false && content.classList.contains('album') == false) { 
+    if (content.classList.contains('artist') == false && content.classList.contains('album') == false && content.classList.contains('track') == false) { 
         if (content.classList.contains('albums') == true) {
             controlDisplay('gridMode', 'three-columns', 'albums');
             const p = document.querySelectorAll('p');
@@ -208,7 +223,7 @@ const displayGrid = () => {
 }
 
 const displayList = () => {
-    if (content.classList.contains('artist') == false && content.classList.contains('album') == false){
+    if (content.classList.contains('artist') == false && content.classList.contains('album') == false && content.classList.contains('track') == false){
         if (content.classList.contains('albums') == true) {
             controlDisplay('listMode', 'three-columns', 'albums');
             const p = document.querySelectorAll('p');
