@@ -47,7 +47,6 @@ async function viewResults() {
         switch (typeSearch) {
             case 'artists':
                 const artistId = dataRequest.artists.items[0].data.uri.replace('spotify:artist:', '');
-                console.log(dataRequest);
                 controlDisplay('gridMode', 'full','artist');
                 view = `${dataRequest.artists.items.map(artist => 
                     `
@@ -63,7 +62,6 @@ async function viewResults() {
                 } 
                 break;
             case 'albums':
-                console.log(dataRequest);
                 controlDisplay('gridMode', 'full', 'album');
                 const albumId = dataRequest.albums.items[0].data.uri.replace('spotify:album:', '');
                 view = `
@@ -74,13 +72,12 @@ async function viewResults() {
                     </div>
                     `;
                 content.innerHTML = view;
-                document.querySelector('.disc').onclick = openAlbum;
-                function openAlbum() {
+                document.querySelector('.disc').onclick = openAlbumDisc;
+                function openAlbumDisc() {
                     lookAlbum(albumId);
                 }
                 break;
             case 'tracks':
-                console.log(dataRequest);  
                 controlDisplay('gridMode', 'full','track'); 
                 const albumIdTrack = `${dataRequest.tracks[0].data.albumOfTrack.id}`;             
                 view = `
@@ -91,12 +88,11 @@ async function viewResults() {
                 </div>
                 `;
                 content.innerHTML = view;
-                document.getElementById(albumIdTrack).onclick = openAlbum;
-                function openAlbum() {
+                document.getElementById(`${albumIdTrack}`).onclick = openAlbumTrack;
+                function openAlbumTrack() {
                     lookAlbum(albumIdTrack);
-                }             
-
-            break;
+                } 
+                break;
             default:
                 break;
         }
@@ -110,7 +106,6 @@ async function lookAlbum(id) {
     const albumTracksUrl = `${API}album_tracks?id=${id}&offset=0&limit=300`;
     const albumTracksRequest = await fetchData(albumTracksUrl, options);
     controlDisplay('gridMode', 'three-columns', 'tracks');
-    console.log(albumTracksRequest);
     view = `
         ${albumTracksRequest.data.album.tracks.items.map(track => 
         `
@@ -118,8 +113,8 @@ async function lookAlbum(id) {
                 <div>
                     <img src="../src/assets/images/music.png" alt="">
                 </div>    
-                <div>
-                    <p class="p track-info">${track.track.trackNumber} - ${track.track.name}</p>
+                <div class="track-info">
+                    <p class="p">${track.track.trackNumber} - ${track.track.name}</p>
                 </div>
             </div>
         `).join('')}`;
@@ -130,7 +125,6 @@ async function lookArtist(id) {
     const artistAlbumsUrl = `${API}artist_albums?id=${id}&offset=0&limit=100`;
     const artistAlbumsRequest = await fetchData(artistAlbumsUrl, options);
     controlDisplay('gridMode', 'three-columns', 'albums');
-    console.log(artistAlbumsRequest);
     view = `
     ${artistAlbumsRequest.data.artist.discography.albums.items.map(album=> 
     `
@@ -207,7 +201,6 @@ altenarImagen(alternarToArray);
 // DISPLAY OPTIONS
 
 const displayGrid = () => {
-    console.log('esto es una grid');
     if (content.classList.contains('artist') == false && content.classList.contains('album') == false && content.classList.contains('track') == false) { 
         if (content.classList.contains('albums') == true) {
             controlDisplay('gridMode', 'three-columns', 'albums');
