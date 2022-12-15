@@ -604,27 +604,6 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-/* @media (min-width:992px) {
-  .seccion-superior{
-    flex-direction: row;
-  }
-  .columna-izq-superior{
-    height: 100vh;
-  }
-
-  .text-container-sds {
-    margin: 0 50rem;
-  }  
-
-  .img-sup-der img{
-    width: 40vw;
-  }
-
-  .contacto img {
-   width: 64px;
-  }
-} */
-
 @media (min-width:1200px) {
   body{
     display: flex;
